@@ -1,0 +1,96 @@
+version: '3.4'
+
+# 1. Define the network with STATIC IPs
+networks:
+  besu_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.239.0/24
+
+# 2. Define volumes with NEW NAMES to force a reset
+volumes:
+  validator1-data-FINAL:
+  validator2-data-FINAL:
+  validator3-data-FINAL:
+  validator4-data-FINAL:
+
+x-besu-def:
+  &besu-def
+  image: hyperledger/besu:23.4.1
+  user: "root"
+  entrypoint:
+    - /bin/bash
+    - -c
+    - |
+      echo $$PRIV_KEY > /tmp/key_ready
+      # Static Nodes File (Using Fixed IPs)
+      echo '["enode://239910dffc6d9091e912cbb44135bb37618127756d9da682dacb9879fec4600e0de6d0e6b293564da8d44c7784d4d5bd139da09f25ce3966057fc8db7d2e13a9@172.16.239.11:30303"]' > /tmp/static-nodes.json
+      
+      /opt/besu/bin/besu \
+      --data-path=/opt/besu/data \
+      --genesis-file=/config/genesis.json \
+      --miner-enabled \
+      --miner-coinbase=0x0000000000000000000000000000000000000000 \
+      --min-gas-price=0 \
+      --rpc-http-enabled \
+      --rpc-http-api=ETH,NET,QBFT,WEB3,MINER,PERM \
+      --rpc-http-cors-origins="*" \
+      --host-allowlist="*" \
+      --node-private-key-file=/tmp/key_ready \
+      --static-nodes-file=/tmp/static-nodes.json \
+      --p2p-port=30303 \
+      --rpc-http-port=8545
+
+services:
+  validator1:
+    << : *besu-def
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./networkFiles/genesis.json:/config/genesis.json
+      - validator1-data-FINAL:/opt/besu/data
+    networks:
+      besu_network:
+        ipv4_address: 172.16.239.11
+    environment:
+      - PRIV_KEY=0xcd0df6fa5d0bd9f0e4240b024878d1612a7900bc19c09f8989a3e57e44986a9a
+
+  validator2:
+    << : *besu-def
+    volumes:
+      - ./networkFiles/genesis.json:/config/genesis.json
+      - validator2-data-FINAL:/opt/besu/data
+    depends_on:
+      - validator1
+    networks:
+      besu_network:
+        ipv4_address: 172.16.239.12
+    environment:
+      - PRIV_KEY=0xa6cb34a9a5a201f0cafe4fbc6032394570469782f9bb670c1f0759cf0021d2ef
+
+  validator3:
+    << : *besu-def
+    volumes:
+      - ./networkFiles/genesis.json:/config/genesis.json
+      - validator3-data-FINAL:/opt/besu/data
+    depends_on:
+      - validator1
+    networks:
+      besu_network:
+        ipv4_address: 172.16.239.13
+    environment:
+      - PRIV_KEY=0x62dcddfe8d83c6a03f5bf27ba3129371b9795b6bc4cde88418fc914a17b3c730
+
+  validator4:
+    << : *besu-def
+    volumes:
+      - ./networkFiles/genesis.json:/config/genesis.json
+      - validator4-data-FINAL:/opt/besu/data
+    depends_on:
+      - validator1
+    networks:
+      besu_network:
+        ipv4_address: 172.16.239.14
+    environment:
+      - PRIV_KEY=0x41485916bf21a5c8ce6b3c211e74588231fed10b78fc42e84bd25dc4b06b820b

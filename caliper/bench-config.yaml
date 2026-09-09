@@ -1,0 +1,29 @@
+test:
+  name: block-teleplan-benchmark
+  description: Benchmarking Besu QBFT for Defense Communication
+  workers:
+    type: local
+    number: 1 # Number of simulated clients
+  rounds:
+    - label: write-load
+      description: Read/Write load to test consensus speed
+      txNumber: 500
+      rateControl:
+        type: fixed-rate
+        opts:
+          tps: 50
+      workload:
+        module: benchmarks/scenario/simple/open.js
+        arguments:
+          contractId: simple
+
+monitors:
+  resource:
+  - module: docker
+    options:
+      interval: 1
+      containers:
+      - /block-teleplan-cluster-validator1-1
+      - /block-teleplan-cluster-validator2-1
+      - /block-teleplan-cluster-validator3-1
+      - /block-teleplan-cluster-validator4-1

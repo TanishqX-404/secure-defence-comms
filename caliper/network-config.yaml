@@ -1,0 +1,27 @@
+name: Besu-QBFT-Network
+version: "2.0.0"
+
+caliper:
+  blockchain: besu
+
+channels:
+  - channelName: mychannel
+    contracts:
+    - id: simple
+      contractID: simple
+      path: src/simple.json # We will use a pre-compiled simple contract for pure benchmarking
+
+organizations:
+  - mspid: Org1
+    identities:
+      certificates:
+      - name: 'User1'
+        clientPrivateKey: '0xcd0df6fa5d0bd9f0e4240b024878d1612a7900bc19c09f8989a3e57e44986a9a'
+        clientSignedCert: '0xcd0df6fa5d0bd9f0e4240b024878d1612a7900bc19c09f8989a3e57e44986a9a' # Besu uses key as cert placeholder
+
+peers:
+  - endpoint: 172.16.239.11:8545 # Validator 1 Static IP
+    eventUrl: 172.16.239.11:8545
+    grpcOptions:
+      ssl-target-name-override: validator1
+      hostnameOverride: validator1

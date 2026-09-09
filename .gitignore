@@ -1,0 +1,18 @@
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+tmp/
+*.log
+caliper/workspace/
+caliper/reports/
+
+# Local validator private keys. Public key files may be kept for reference.
+networkFiles/keys/**/key
+networkFiles/keys/**/key.*.bak
+
+# Generated figures can be recreated with `npm run graphs`.
+throughput_analysis.png
+latency_analysis.png

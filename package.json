@@ -1,0 +1,26 @@
+{
+  "name": "block-teleplan-cluster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "benchmark.js",
+  "scripts": {
+    "check:js": "node --check benchmark.js",
+    "test": "npm run check:js",
+    "network:up": "docker compose up -d",
+    "network:status": "docker compose ps",
+    "network:logs": "docker compose logs --tail=100",
+    "network:down": "docker compose down",
+    "network:reset": "docker compose down -v",
+    "benchmark:js": "node benchmark.js",
+    "benchmark:python": "python benchmark.py",
+    "graphs": "python generate_graphs.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ethers": "^6.16.0",
+    "pg": "^8.17.2"
+  }
+}
