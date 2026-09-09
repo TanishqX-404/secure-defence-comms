@@ -22,6 +22,16 @@ python -m pip install -r requirements.txt
 
 If PowerShell blocks activation, run the Python commands with the full interpreter path or use another shell. Activation is a convenience, not a requirement.
 
+## Validate the Contract Artifact
+
+The canonical contract is `contracts/SecureDefenseComm.sol`. The benchmark uses the matching compiled artifact, so validate the source/artifact layout before changing experiments:
+
+```powershell
+npm run contract:check
+```
+
+This checks that the ABI and bytecode exist, that the required authorization functions are present, and that the Solidity source declares `SecureDefenseComm`. It does not replace a Solidity compiler, unit test suite, or security review.
+
 ## Start and Verify the Network
 
 ```powershell

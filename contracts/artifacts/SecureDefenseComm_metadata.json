@@ -1,0 +1,309 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "groupId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					}
+				],
+				"name": "GroupCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "groupId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "member",
+						"type": "address"
+					}
+				],
+				"name": "MemberAdded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "groupId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "member",
+						"type": "address"
+					}
+				],
+				"name": "MemberRemoved",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_groupId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_member",
+						"type": "address"
+					}
+				],
+				"name": "addMember",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_name",
+						"type": "string"
+					}
+				],
+				"name": "createGroup",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_groupId",
+						"type": "uint256"
+					}
+				],
+				"name": "getGroupMembers",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUserGroups",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "groupCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "hqAdmin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_groupId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "isMember",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_groupId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_member",
+						"type": "address"
+					}
+				],
+				"name": "removeMember",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "transferAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "HQ-controlled secure group management for defence personnel",
+			"kind": "dev",
+			"methods": {
+				"addMember(uint256,address)": {
+					"details": "Add a member to a group (only HQ can add)",
+					"params": {
+						"_groupId": "ID of the group",
+						"_member": "Address of the member"
+					}
+				},
+				"createGroup(string)": {
+					"details": "Create a new secure group",
+					"params": {
+						"_name": "Name of the group"
+					}
+				},
+				"getGroupMembers(uint256)": {
+					"details": "Get list of members in a group",
+					"params": {
+						"_groupId": "ID of the group"
+					}
+				},
+				"getUserGroups(address)": {
+					"details": "Get all groups a user is part of",
+					"params": {
+						"_user": "Address of the user"
+					}
+				},
+				"isMember(uint256,address)": {
+					"details": "Check if a user is part of a group",
+					"params": {
+						"_groupId": "ID of the group",
+						"_user": "Address of the user"
+					}
+				},
+				"removeMember(uint256,address)": {
+					"details": "Remove a member from a group (only HQ can remove)",
+					"params": {
+						"_groupId": "ID of the group",
+						"_member": "Address of the member"
+					}
+				},
+				"transferAdmin(address)": {
+					"details": "HQ can transfer admin to another address"
+				}
+			},
+			"title": "SecureDefenseComm",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"SecureDefenseComm.sol": "SecureDefenseComm"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"SecureDefenseComm.sol": {
+			"keccak256": "0x7a3079d7907af44cb0781f7fe4628703d5843bfcbcf4def0ac4067d0e1b96b7a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fea35a1231540ef78b7a4fc380e41edd85df45daa43477a053abf384a60cfe62",
+				"dweb:/ipfs/QmSrXwapdQw8e1DzhNRbdRRVJ8GHFBwSVQeywLt2ojwToJ"
+			]
+		}
+	},
+	"version": 1
+}

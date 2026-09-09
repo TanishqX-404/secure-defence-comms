@@ -15,9 +15,10 @@ The paper reports a read-intensive authorization result of 3,140 TPS and a four-
 3. Install the Python dependencies in a virtual environment: `python -m pip install -r requirements.txt`.
 4. Start the local network: `npm run network:up`.
 5. Check the containers: `npm run network:status`.
-6. Run the JavaScript resilience/read benchmark: `npm run benchmark:js`.
-7. Regenerate the research figures: `npm run graphs`.
-8. Stop the network when finished: `npm run network:down`.
+6. Validate the checked-in contract artifact: `npm run contract:check`.
+7. Run the JavaScript resilience/read benchmark: `npm run benchmark:js`.
+8. Regenerate the research figures: `npm run graphs`.
+9. Stop the network when finished: `npm run network:down`.
 
 The full operating procedure, reset behavior, troubleshooting, and reproducibility checklist are in [SOP.md](SOP.md). The component ownership and change map is in [docs/PROJECT_MAP.md](docs/PROJECT_MAP.md).
 
@@ -28,6 +29,7 @@ The full operating procedure, reset behavior, troubleshooting, and reproducibili
 | `npm run network:up` | Start the four Besu validators in Docker Compose |
 | `npm run network:status` | Show validator container state |
 | `npm run network:logs` | Show recent validator logs |
+| `npm run contract:check` | Validate the checked-in SecureDefenseComm artifact and required interface |
 | `npm run benchmark:js` | Deploy the embedded access-control contract and run the 60-second read test |
 | `npm run benchmark:python` | Send ten simple transactions through Web3 |
 | `npm run graphs` | Recreate `throughput_analysis.png` and `latency_analysis.png` |
@@ -40,6 +42,8 @@ The full operating procedure, reset behavior, troubleshooting, and reproducibili
 
 - `docker-compose.yml`: local four-validator Besu/QBFT runtime.
 - `networkFiles/`: genesis, static peer list, and disposable local validator keys.
+- `contracts/SecureDefenseComm.sol`: canonical HQ-controlled group and membership authorization contract.
+- `contracts/artifacts/`: ABI, bytecode, metadata, and compiler build-info for the contract.
 - `benchmark.js`: JavaScript contract deployment and read-path resilience benchmark.
 - `benchmark.py`: small Python transaction latency smoke benchmark.
 - `caliper/`: an earlier Caliper benchmark configuration and container definition; it is retained for reference but is not currently a complete runnable workflow because its workload module is not present in this checkout.

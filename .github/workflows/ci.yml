@@ -27,6 +27,9 @@ jobs:
       - name: Check JavaScript
         run: npm test
 
+      - name: Check contract artifact
+        run: npm run contract:check
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

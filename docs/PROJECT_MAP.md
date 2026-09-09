@@ -8,11 +8,13 @@ This is a small research workspace with several distinct code areas. Keep change
 
 ## Benchmarks
 
-`benchmark.js` is the primary JavaScript benchmark. It deploys the embedded contract bytecode, creates a group, and measures repeated read-only membership checks.
+`contracts/SecureDefenseComm.sol` is the canonical authorization contract. It controls HQ administration, group creation, membership changes, membership checks, and audit events. Its ABI, bytecode, metadata, and compiler build-info are under `contracts/artifacts/`.
+
+`benchmark.js` is the primary JavaScript benchmark. It deploys the contract bytecode embedded in the script, creates a group, and measures repeated read-only membership checks.
 
 `benchmark.py` is a separate Web3 smoke benchmark for ten receipt-confirmed transactions. Do not combine its latency output with the JavaScript read-path output.
 
-The embedded ABI and bytecode in `benchmark.js` are a frozen test artifact. If the contract changes, regenerate both together and record the compiler version.
+The ABI and bytecode in `benchmark.js` are a frozen test artifact. If the contract changes, regenerate both from `contracts/SecureDefenseComm.sol`, update the checked-in artifacts and benchmark together, and record the compiler version.
 
 ## Analysis
 

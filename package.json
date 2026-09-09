@@ -11,6 +11,7 @@
     "network:logs": "docker compose logs --tail=100",
     "network:down": "docker compose down",
     "network:reset": "docker compose down -v",
+    "contract:check": "node scripts/check-contract-artifact.js",
     "benchmark:js": "node benchmark.js",
     "benchmark:python": "python benchmark.py",
     "graphs": "python generate_graphs.py"
