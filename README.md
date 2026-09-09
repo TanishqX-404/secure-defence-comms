@@ -56,19 +56,3 @@ The benchmark scripts accept `BENCHMARK_RPC_URL` and `BENCHMARK_PRIVATE_KEY` env
 ## GitHub Publishing
 
 This folder is prepared to be published as a source repository, but inspect `git status` and `git diff --cached` before the first push. Local validator private keys under `networkFiles/keys/**/key` are ignored. The keys embedded in `docker-compose.yml` and the benchmark defaults are disposable development fixtures only; replace them before using this configuration outside a throwaway local network.
-
-No Git history or remote is assumed. The initial setup commands are:
-
-```powershell
-git init
-git add .
-git status
-git diff --cached --stat
-git diff --cached --name-only
-git commit -m "Prepare Block Teleplan research testbed"
-git branch -M main
-git remote add origin https://github.com/<your-user>/<your-repository>.git
-git push -u origin main
-```
-
-Do not use `git add -f` for ignored keys, `.env` files, `node_modules`, `tmp`, or generated Python caches.
