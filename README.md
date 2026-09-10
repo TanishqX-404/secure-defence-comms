@@ -45,8 +45,8 @@ The full operating procedure, reset behavior, troubleshooting, and reproducibili
 - `contracts/SecureDefenseComm.sol`: canonical HQ-controlled group and membership authorization contract.
 - `contracts/artifacts/`: ABI, bytecode, metadata, and compiler build-info for the contract.
 - `benchmark.js`: JavaScript contract deployment and read-path resilience benchmark.
-- `benchmark.py`: small Python transaction latency smoke benchmark.
-- `caliper/`: an earlier Caliper benchmark configuration and container definition; it is retained for reference but is not currently a complete runnable workflow because its workload module is not present in this checkout.
+- `benchmark.py`: Small Python transaction latency smoke benchmark.
+- `caliper/`: An earlier Caliper benchmark configuration and container definition; it is retained for reference but is not currently a complete runnable workflow because its workload module is not present in this checkout.
 - `generate_graphs.py`: recreates the figures from the recorded Phase 3 values embedded in the script.
 - `docs/PROJECT_MAP.md`: what belongs where and where to make future changes.
 - `SOP.md`: the repeatable operator workflow.
